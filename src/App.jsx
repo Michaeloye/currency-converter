@@ -1,11 +1,19 @@
-import { useState } from "react";
 import "./App.css";
+import Header from "./components/header";
+import CurrencyCard from "./components/currencyCard";
+import { CgArrowsExchange } from "react-icons/cg";
 
 function App() {
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-white">
-      <h1 className="text-black text-2xl">HELLO, I'M A REACT DEVELOPER!</h1>
-      <p className="text-black">- Rohan Singh Rawat</p>
+    <div className="h-screen">
+      <Header />
+      <p>From</p>
+      <CurrencyCard />
+      <div className="bg-primary-red mx-auto mt-5 mb-5 h-12 w-12 flex justify-center items-center rounded-full">
+        <CgArrowsExchange color="white" size="33" />
+      </div>
+      <p>To</p>
+      <CurrencyCard />
     </div>
   );
 }
