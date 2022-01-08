@@ -1,11 +1,10 @@
 import React from "react";
-import usa from "../../../../../Downloads/icons8-usa-48.png";
 
-function CurrencyCard() {
+function CurrencyCard({ countryFlag }) {
   return (
     <div
       className="mx-auto h-48 w-11/12 border-2 rounded-2xl flex items-center shadow-light
-          text-primary-gray"
+          text-primary-gray lg:w-96"
     >
       {/* Inputs */}
       <div className="ml-5 flex flex-col gap-5">
@@ -14,7 +13,7 @@ function CurrencyCard() {
           <select className="bg-white h-10 border-2 rounded-lg w-8/12">
             <option>USD - US Dollar</option>
           </select>
-          <img src={usa} alt="usa flag" />
+          <img src={countryFlag} alt="Country flag" />
         </div>
       </div>
     </div>
