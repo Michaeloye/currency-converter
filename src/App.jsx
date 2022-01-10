@@ -5,8 +5,6 @@ import CurrencyCard from "./components/currencyCard";
 import { CgArrowsExchange } from "react-icons/cg";
 
 function App() {
-  const [flagURL, setFlagURL] = useState("https://countryflagsapi.com/svg/us");
-
   return (
     <div className="h-screen">
       <Header />
@@ -15,7 +13,7 @@ function App() {
           <p className="text-primary-gray font-medium mt-3 md:mt-auto ml-5 mb-1 ">
             From
           </p>
-          <CurrencyCard countryFlag={flagURL} />
+          <CurrencyCard />
         </div>
         <div
           className="bg-primary-red h-12 w-12 mt-5 md:mt-0 flex justify-center items-center rounded-full 
@@ -25,7 +23,7 @@ function App() {
         </div>
         <div>
           <p className="text-primary-gray font-medium ml-5 mb-1 ">To</p>
-          <CurrencyCard countryFlag={flagURL} />
+          <CurrencyCard />
         </div>
       </div>
 
