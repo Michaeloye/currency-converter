@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 function CurrencyCard({
   countryFlag,
@@ -28,7 +28,7 @@ function CurrencyCard({
             ""
           )}
           <input
-            type="text"
+            type="number"
             inputMode="decimal"
             autoComplete="off"
             value={amount}
