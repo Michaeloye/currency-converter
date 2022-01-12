@@ -4,12 +4,14 @@ import Header from "./components/header";
 import CurrencyCard from "./components/currencyCard";
 import { CgArrowsExchange } from "react-icons/cg";
 import axios from "axios";
+
 const headers = {
   headers: { "X-Api-Key": import.meta.env.VITE_APP_API_KEY_2 },
 };
+
 function App() {
   const [countries, setCountries] = useState([]);
-  const [amountInput, setAmountInput] = useState("");
+  const [amountInput, setAmountInput] = useState(1000);
   const [amountOutput, setAmountOutput] = useState("");
 
   const [flagURL, setFlagURL] = useState("https://countryflagsapi.com/svg/US");
@@ -20,8 +22,8 @@ function App() {
   const [inputValue, setInputValue] = useState("USD - US Dollar");
   const [secondInputValue, setSecondInputValue] = useState("USD - US Dollar");
 
-  const [identifier, setIdentifier] = useState("");
-  const [secondIdentifier, setSecondIdentifier] = useState("");
+  const [identifier, setIdentifier] = useState("US");
+  const [secondIdentifier, setSecondIdentifier] = useState("US");
 
   const [currencyCode, setCurrencyCode] = useState([{ symbol: "$" }]);
   const [secondCurrencyCode, setSecondCurrencyCode] = useState([
@@ -41,7 +43,7 @@ function App() {
     setCurrencyCode(filterCountryCode);
 
     setIdentifier(country.slice(0, 2));
-    setFlagURL(url + identifier);
+
     setInputValue(country);
     // check if flag image exists
 
@@ -71,7 +73,7 @@ function App() {
     setSecondCurrencyCode(filterCountryCode);
 
     setSecondIdentifier(country.slice(0, 2));
-    setSecondFlagURL(url + secondIdentifier);
+
     setSecondInputValue(country);
     // check if flag image exists
 
@@ -106,7 +108,17 @@ function App() {
   }
   function changeAmountOutput(e) {
     setAmountOutput(e.target.value);
-    setAmountInput();
+  }
+  function switchInputOutput() {
+    const tmp = { inputValue, identifier, currencyCode };
+    setInputValue(secondInputValue);
+    setSecondInputValue(tmp.inputValue);
+
+    setIdentifier(`${secondIdentifier}`);
+    setSecondIdentifier(`${tmp.identifier}`);
+
+    setCurrencyCode(secondCurrencyCode);
+    setSecondCurrencyCode(tmp.currencyCode);
   }
   useEffect(() => {
     axios
@@ -133,15 +145,22 @@ function App() {
     //     setAmountOutput(res.data.new_amount);
     //     console.log(res.data);
     //   });
+    const url = "https://countryflagsapi.com/svg/";
+    setFlagURL(url + identifier);
+    setSecondFlagURL(url + secondIdentifier);
+
     axios
       .get(
         `https://v6.exchangerate-api.com/v6/${
           headers["headers"]["X-Api-Key"]
         }/pair/${inputValue.slice(0, 3)}/${secondInputValue.slice(0, 3)}`
       )
-      .then((res) => setAmountOutput(amountInput * res.data.conversion_rate))
+      .then((res) => {
+        setAmountOutput(amountInput * res.data.conversion_rate);
+      })
       .catch((error) => console.log(error));
-  }, [inputValue, secondInputValue, amountInput]);
+  }, [inputValue, secondInputValue, identifier, secondIdentifier, amountInput]);
+
   return (
     <div className="h-screen">
       <Header />
@@ -165,6 +184,7 @@ function App() {
         <div
           className="bg-primary-red h-12 w-12 mt-5 md:mt-0 flex justify-center items-center rounded-full 
           cursor-pointer shadow-light hover:bg-red-400"
+          onClick={() => switchInputOutput()}
         >
           <CgArrowsExchange color="white" size="33" />
         </div>
