@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import Header from "./components/header";
 import CurrencyCard from "./components/currencyCard";
 import { CgArrowsExchange } from "react-icons/cg";
