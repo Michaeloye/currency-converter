@@ -4,10 +4,6 @@ import CurrencyCard from "./components/currencyCard";
 import { CgArrowsExchange } from "react-icons/cg";
 import axios from "axios";
 
-const headers = {
-  headers: { "X-Api-Key": import.meta.env.VITE_APP_API_KEY_2 },
-};
-
 function App() {
   const [countries, setCountries] = useState([]);
   const [amountInput, setAmountInput] = useState(1000);
@@ -132,18 +128,6 @@ function App() {
       });
   }, []);
   useEffect(() => {
-    // axios
-    //   .get(
-    //     `${import.meta.env.VITE_APP_API_URL}want=${secondInputValue.slice(
-    //       0,
-    //       3
-    //     )}&have=${inputValue.slice(0, 3)}&amount=${amountInput}`,
-    //     headers
-    //   )
-    //   .then((res) => {
-    //     setAmountOutput(res.data.new_amount);
-    //     console.log(res.data);
-    //   });
     const url = "https://countryflagsapi.com/svg/";
     setFlagURL(url + identifier);
     setSecondFlagURL(url + secondIdentifier);
@@ -151,7 +135,7 @@ function App() {
     axios
       .get(
         `https://v6.exchangerate-api.com/v6/${
-          headers["headers"]["X-Api-Key"]
+          import.meta.env.VITE_APP_API_KEY
         }/pair/${inputValue.slice(0, 3)}/${secondInputValue.slice(0, 3)}`
       )
       .then((res) => {
