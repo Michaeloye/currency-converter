@@ -31,6 +31,7 @@ function CurrencyCard({
             type="number"
             inputMode="decimal"
             autoComplete="off"
+            spellCheck="false"
             value={amount}
             className="border-2 h-10 px-2 rounded-lg w-8/12"
             onChange={setAmount}
