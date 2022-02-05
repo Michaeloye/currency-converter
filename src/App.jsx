@@ -6,7 +6,7 @@ import axios from "axios";
 
 function App() {
   const [countries, setCountries] = useState([]);
-  const [amountInput, setAmountInput] = useState(1000);
+  const [amountInput, setAmountInput] = useState(1);
   const [amountOutput, setAmountOutput] = useState("");
 
   const [flagURL, setFlagURL] = useState("https://countryflagsapi.com/svg/US");
