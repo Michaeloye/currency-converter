@@ -11,18 +11,20 @@ function App() {
 
   const [flagURL, setFlagURL] = useState("https://countryflagsapi.com/svg/US");
   const [secondFlagURL, setSecondFlagURL] = useState(
-    "https://countryflagsapi.com/svg/US"
+    "https://countryflagsapi.com/svg/NG"
   );
 
   const [inputValue, setInputValue] = useState("USD - US Dollar");
-  const [secondInputValue, setSecondInputValue] = useState("USD - US Dollar");
+  const [secondInputValue, setSecondInputValue] = useState(
+    "NGN - Nigerian Naira"
+  );
 
   const [identifier, setIdentifier] = useState("US");
-  const [secondIdentifier, setSecondIdentifier] = useState("US");
+  const [secondIdentifier, setSecondIdentifier] = useState("NG");
 
   const [currencyCode, setCurrencyCode] = useState([{ symbol: "$" }]);
   const [secondCurrencyCode, setSecondCurrencyCode] = useState([
-    { symbol: "$" },
+    { symbol: "₦" },
   ]);
 
   const [imageAvailable, setImageAvailable] = useState(true);
